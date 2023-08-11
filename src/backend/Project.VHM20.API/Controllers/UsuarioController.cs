@@ -5,7 +5,7 @@ using Project.VHM20.Data.Persistence.Services;
 
 namespace Project.VHM20.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/usuario")]
     [ApiController]
     public class UsuarioController : ControllerBase
     {
