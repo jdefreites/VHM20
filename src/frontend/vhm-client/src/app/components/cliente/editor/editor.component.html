@@ -1,0 +1,85 @@
+<h1>{{ title }}</h1>
+<form *ngIf="!loading" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <input type="hidden" formControlName="id" *ngIf="id" />
+  <div class="row">
+    <div class="col-6 mb-3">
+      <label class="form-label">Cédula</label>
+      <input
+        type="text"
+        formControlName="documentoIdentidad"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid': submitted && f['documentoIdentidad'].errors
+        }"
+      />
+      <div
+        *ngIf="submitted && f['documentoIdentidad'].errors"
+        class="invalid-feedback"
+      >
+        <div *ngIf="f['documentoIdentidad'].errors['required']">
+          Este campo es requerido
+        </div>
+      </div>
+    </div>
+    <div class="col-6 mb-3">
+      <label class="form-label">Fecha nacimiento</label>
+      <input
+        type="date"
+        formControlName="fechaNacimiento"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['fechaNacimiento'].errors }"
+      />
+      <div
+        *ngIf="submitted && f['fechaNacimiento'].errors"
+        class="invalid-feedback"
+      >
+        <div *ngIf="f['fechaNacimiento'].errors['required']">
+          Este campo es requerido
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 mb-3">
+      <label class="form-label">Nombre</label>
+      <input
+        type="text"
+        formControlName="nombre"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['nombre'].errors }"
+      />
+      <div *ngIf="submitted && f['nombre'].errors" class="invalid-feedback">
+        <div *ngIf="f['nombre'].errors['required']">
+          Este campo es requerido
+        </div>
+      </div>
+    </div>
+    <div class="col-6 mb-3">
+      <label class="form-label">Apellido</label>
+      <input
+        type="text"
+        formControlName="apellido"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['apellido'].errors }"
+      />
+      <div *ngIf="submitted && f['apellido'].errors" class="invalid-feedback">
+        <div *ngIf="f['apellido'].errors['required']">
+          Este campo es requerido
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <button [disabled]="loading" class="btn btn-primary">
+      <span
+        *ngIf="submitting"
+        class="spinner-border spinner-border-sm me-1"
+      ></span>
+      Guardar
+    </button>
+    <a routerLink="/clientes" class="btn btn-link">Cancelar</a>
+  </div>
+</form>
+<div *ngIf="loading" class="text-center m-5">
+  <span class="spinner-border spinner-border-lg align-center"></span>
+</div>

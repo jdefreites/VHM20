@@ -8,7 +8,9 @@ namespace Project.VHM20.Data
     {
         public MapperProfile()
         {
-            CreateMap<Cliente, ClienteDto>().EqualityComparison((dto, o) => dto.Id == o.Id);
+            CreateMap<Cliente, ClienteDto>()
+                .ReverseMap()
+                .EqualityComparison((dto, o) => dto.Id == o.Id);
         }
     }
 }

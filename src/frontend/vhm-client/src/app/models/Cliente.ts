@@ -3,5 +3,5 @@ export interface Cliente {
   nombre?: string;
   apellido?: string;
   documentoIdentidad?: string,
-  fechanacimiento?: string
+  fechaNacimiento?: string
 }

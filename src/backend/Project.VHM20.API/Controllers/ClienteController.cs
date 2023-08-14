@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Project.VHM20.API.Helpers;
 using Project.VHM20.Data;
 using Project.VHM20.Data.Entities;
 using Project.VHM20.Data.Persistence.Repository;
@@ -10,6 +11,7 @@ namespace Project.VHM20.API.Controllers
 {
     [Route("api/cliente")]
     [ApiController]
+    [Authorize]
     public class ClienteController : ControllerBase
     {
         private readonly IClienteRepository _repository;
@@ -48,9 +50,10 @@ namespace Project.VHM20.API.Controllers
                 await _repository.AddAsync(data);
                 await _repository.CommitAsync();
 
-                return StatusCode(StatusCodes.Status201Created, "Registro creado");
+                return StatusCode(StatusCodes.Status201Created, new { results = "Registro creado" });
             }
-            catch {
+            catch
+            {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error!");
             }
         }
@@ -65,7 +68,7 @@ namespace Project.VHM20.API.Controllers
                 await _repository.UpdateAsync(data);
                 await _repository.CommitAsync();
 
-                return StatusCode(StatusCodes.Status200OK, "Registro actualizado");
+                return Ok(new { result = "Registro actualizado" });
             }
             catch
             {
@@ -76,14 +79,14 @@ namespace Project.VHM20.API.Controllers
         // DELETE api/<ClienteController>/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
-        {            
+        {
             try
             {
                 var data = await _repository.FindByIdAsync(id);
                 await _repository.DeleteAsync(data);
                 await _repository.CommitAsync();
 
-                return StatusCode(StatusCodes.Status200OK, "Registro eliminado");
+                return StatusCode(StatusCodes.Status200OK, new { result = "Registro eliminado" });
             }
             catch
             {

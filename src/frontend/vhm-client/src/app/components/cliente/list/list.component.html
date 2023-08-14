@@ -1,0 +1,38 @@
+<h1>Clientes</h1>
+<a routerLink="add" class="btn btn-sm btn-success mb-2">Agregar</a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Cédula</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Fecha Nacimiento</th>
+      <th style="width: 10%"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cliente of clientes; index as i">
+      <th scope="row">{{ cliente.id }}</th>
+      <td>
+        {{ cliente.documentoIdentidad }}
+      </td>
+      <td>{{ cliente.nombre }}</td>
+      <td>{{ cliente.apellido }}</td>
+      <td>{{ cliente.fechaNacimiento | date : "dd/MM/yyyy" }}</td>
+      <td style="white-space: nowrap">
+        <a
+          routerLink="edit/{{ cliente.id }}"
+          class="btn btn-sm btn-primary me-1"
+          ><i class=""></i>Editar</a
+        >
+        <button
+          (click)="deleteCliente(cliente.id!)"
+          class="btn btn-sm btn-danger btn-delete-user"
+        >
+          <span>Eliminar</span>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

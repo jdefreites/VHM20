@@ -1,18 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { DecimalPipe, NgFor } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-clientes-list',
-  standalone: true,
-	imports: [NgFor, DecimalPipe],
-  templateUrl: './cliente.component.html',
-  styleUrls: ['./cliente.component.css']
+  templateUrl: './cliente.component.html'
 })
-export class ClienteComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}
+export class ClienteComponent { }
